@@ -1,0 +1,64 @@
+.moviesContainer {
+  margin: 0 auto;
+  width: 1320px;
+
+  padding: 30px 0;
+}
+.moviesContainer h2 {
+  font-weight: 600;
+  font-size: 25.6px;
+  margin-bottom: 20px;
+}
+.moviesWrapper {
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  gap: 12px;
+}
+.moviesWrapper .moviesFilter {
+  display: flex;
+  flex-direction: column;
+  width: 258.4px !important;
+  gap: 10px;
+}
+.sort {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.sort h3 {
+  font-weight: 600;
+
+  font-size: 17.6px;
+}
+.sort img {
+  width: 16px;
+  height: 16px;
+}
+.filterSearch {
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  height: 44px;
+  border-radius: 20px;
+  font-size: 19.2px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.moviesCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.card {
+  overflow: hidden;
+  border-radius: 10px;
+  width: 150px;
+}
+.card img {
+  width: 100%;
+}
