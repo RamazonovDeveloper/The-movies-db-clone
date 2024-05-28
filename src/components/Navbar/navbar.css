@@ -1,27 +1,75 @@
-.navbar{
-    background-color: #042541;
-    height: 64px;
-    display: flex;
-    align-items: center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-.navbar-wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
+.navbar {
+  background-color: #042541;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-wrapper-menu{
-    display: flex;
-    gap: 14px;
-    color: white;
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
 }
 
-.navbar-wrapper-menu-item{
-    padding: 8px;
+.navbar-wrapper-menu {
+  display: flex;
+  gap: 14px;
+  color: white;
 }
 
-.navbar-wrapper-menu-item:nth-child(1){
-    width: 170px;
+.navbar-wrapper-menu-item {
+  padding: 8px;
+  position: relative; /* Needed to position the dropdown */
+}
+
+.navbar-wrapper-menu-item:nth-child(1) {
+  width: 170px;
+}
+
+.rightUser {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: white;
+}
+
+.rightUser .lang {
+  border: 1px solid white;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.rightUser .profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(210 144 1);
+  border-radius: 50%;
+  padding: 4px 10px;
+}
+
+.moviesToggle {
+  background-color: white;
+  color: black;
+  z-index: 5;
+  display: none;
+  padding: 20px 30px;
+  border-radius: 8px;
+  position: absolute;
+  left: 0; /* Adjust as needed */
+  top: 100%; /* Position it below the menu item */
+}
+.moviesToggle li{
+    padding: 5px;
+    width: 100px;
+}
+
+.navbar-wrapper-menu-item:hover .moviesToggle {
+  display: block;
 }

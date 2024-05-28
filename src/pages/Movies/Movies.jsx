@@ -1,26 +1,20 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import movies from "../../repository/movies";
 import "./movies.css";
 import filterChevron from "../../img/moviesFilter.svg";
+import { convertDate } from "../../repository/dataConvert";
+
 
 function Movies() {
   const [popularMovies, setPopularMovies] = useState([]);
 
+  async function getPopularMovies() {
+    const resp = await movies.getMoviesByName("popular");
+    setPopularMovies(resp.results);
+  }
+
   useEffect(() => {
-    axios
-      .get("https://api.themoviedb.org/3/movie/popular", {
-        headers: {
-          accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMDQ2OTFhYWVkMjYyNDlmODk3Y2Y5OGM5MmRhN2Q3NSIsInN1YiI6IjY2NTA5YjIxMDViNjY3ZTNlZDA2OGJmZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vOTnwcb33j7euLXEmxJQCNyJR6PPmfvzXnGKa-YCYmM",
-        },
-      })
-      .then((resp) => {
-        setPopularMovies(resp?.data.results);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    getPopularMovies();
   }, []);
 
   return (
@@ -39,23 +33,29 @@ function Movies() {
           <button className="filterSearch">Search</button>
         </div>
         <div className="moviesCards">
-          {popularMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {popularMovies.map((item) => {
+            return (
+              <div className="card">
+                <span className="material-symbols-outlined moreIcon">more_horiz</span>
+                <img
+                  src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`}
+                  alt=""
+                />
+                <div className="cardBody">
+                  <span>
+                    {Math.round(item.vote_average * 10)}
+                    <p>
+                      <sup>%</sup>
+                    </p>
+                  </span>
+                  <h1>{item.original_title}</h1>
+                  <p>{convertDate(item.release_date)}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
-  );
-}
-
-function MovieCard({ movie }) {
-  return (
-    <div className="card">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <h3>{movie.title}</h3>
     </div>
   );
 }

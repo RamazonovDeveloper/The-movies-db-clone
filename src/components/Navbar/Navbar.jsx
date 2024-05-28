@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './navbar.css'
+import "./navbar.css";
 
 function Navbar() {
+  const moviesToggleData = [
+    { text: "Popular", path: "/movies" },
+    { text: "Now playing", path: "now_playing" },
+    { text: "Upcoming", path: "upcoming" },
+    { text: "Top Rated", path: "top_rated" },
+  ];
+
   const navbarMenuData = [
     {
       text: (
@@ -13,44 +20,53 @@ function Navbar() {
       ),
       path: "/",
     },
-    {
-      text: "Movies",
-      path: "/movies",
-    },
-    {
-      text: "Tv Shows",
-      path: "/tv",
-    },
-    {
-      text: "People",
-      path: "/tv",
-    },
-    {
-      text: "More",
-      path: "/tv",
-    },
+    { text: "Movies", path: "/movies" },
+    { text: "TV Shows", path: "/tv" },
+    { text: "People", path: "/people" },
+    { text: "More", path: "/more" },
   ];
-
-  
 
   return (
     <div className="navbar">
       <div className="container">
         <div className="navbar-wrapper">
           <ul className="navbar-wrapper-menu">
-            {navbarMenuData.map((nav_menu, index) => {
-              return (
-                <li className="navbar-wrapper-menu-item" key={index}>
-                  <Link
-                    to={nav_menu.path}
-                    className="navbar-wrapper-menu-item-link"
-                  >
-                    {nav_menu.text}
-                  </Link>
-                </li>
-              );
-            })}
+            {navbarMenuData.map((nav_menu, index) => (
+              <li className="navbar-wrapper-menu-item" key={index}>
+                <Link
+                  to={nav_menu.path}
+                  className="navbar-wrapper-menu-item-link"
+                >
+                  {nav_menu.text}
+                </Link>
+                {nav_menu.text === "Movies" && (
+                  <div className="moviesToggle">
+                    <ul>
+                      {moviesToggleData.map((item, index) => (
+                        <li key={index}>
+                          <Link to={item.path} className="">
+                            {item.text}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
           </ul>
+          <div className="rightUser">
+            <span className="material-symbols-outlined">add</span>
+            <div className="lang">EN</div>
+            <span className="material-symbols-outlined">notifications</span>
+            <span className="profile">N</span>
+            <span
+              className="material-symbols-outlined"
+              style={{ color: "#01B4E4" }}
+            >
+              search
+            </span>
+          </div>
         </div>
       </div>
     </div>
