@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import movies from "../../repository/movies";
 import "./default.css";
+
 import filterChevron from "../../img/moviesFilter.svg";
 import { convertDate } from "../../repository/dataConvert";
 
-function Movies() {
-  const [popularMovies, setPopularMovies] = useState([]);
+function NowPlaying() {
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 
-  async function getPopularMovies() {
-    const resp = await movies.getMoviesByName("popular");
-    setPopularMovies(resp.results);
+  async function getnowPlayingMovies() {
+    const resp = await movies.getMoviesByName(
+      "now_playing?language=en-US&page=1"
+    );
+    setNowPlayingMovies(resp.results);
   }
 
   useEffect(() => {
-    getPopularMovies();
+    getnowPlayingMovies();
   }, []);
   return (
     <div className="moviesContainer">
-      <h2>Popular Movies</h2>
+      <h2>Now Playing Movies</h2>
       <div className="moviesWrapper">
         <div className="moviesFilter">
           <div className="sort">
@@ -31,7 +34,7 @@ function Movies() {
           <button className="filterSearch">Search</button>
         </div>
         <div className="moviesCards">
-          {popularMovies?.map((item, index) => {
+          {nowPlayingMovies?.map((item, index) => {
             return (
               <div key={index} className="card">
                 <span className="material-symbols-outlined moreIcon">
@@ -60,4 +63,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default NowPlaying;

@@ -5,9 +5,9 @@ import "./navbar.css";
 function Navbar() {
   const moviesToggleData = [
     { text: "Popular", path: "/movies" },
-    { text: "Now playing", path: "now_playing" },
-    { text: "Upcoming", path: "upcoming" },
-    { text: "Top Rated", path: "top_rated" },
+    { text: "Now playing", path: "/movies/now_playing" },
+    { text: "Upcoming", path: "/movies/upcoming" },
+    { text: "Top Rated", path: "/movies/top_rated" },
   ];
 
   const navbarMenuData = [

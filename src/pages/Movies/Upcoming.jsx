@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
 import movies from "../../repository/movies";
 import "./default.css";
+
 import filterChevron from "../../img/moviesFilter.svg";
 import { convertDate } from "../../repository/dataConvert";
 
-function Movies() {
-  const [popularMovies, setPopularMovies] = useState([]);
+function Upcoming() {
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
 
-  async function getPopularMovies() {
-    const resp = await movies.getMoviesByName("popular");
-    setPopularMovies(resp.results);
+  async function getupcomingMovies() {
+    const resp = await movies.getMoviesByName("upcoming?language=en-US&page=1");
+    setUpcomingMovies(resp.results);
   }
 
   useEffect(() => {
-    getPopularMovies();
+    getupcomingMovies();
   }, []);
+  console.log(upcomingMovies);
   return (
     <div className="moviesContainer">
-      <h2>Popular Movies</h2>
+      <h2>Upcoming Movies</h2>
       <div className="moviesWrapper">
         <div className="moviesFilter">
           <div className="sort">
@@ -31,7 +33,7 @@ function Movies() {
           <button className="filterSearch">Search</button>
         </div>
         <div className="moviesCards">
-          {popularMovies?.map((item, index) => {
+          {upcomingMovies?.map((item, index) => {
             return (
               <div key={index} className="card">
                 <span className="material-symbols-outlined moreIcon">
@@ -60,4 +62,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default Upcoming;
