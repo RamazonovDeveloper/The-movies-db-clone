@@ -4,20 +4,36 @@ import "./default.css";
 
 import filterChevron from "../../img/moviesFilter.svg";
 import { convertDate } from "../../repository/dataConvert";
+import { SpinnerCircular } from "spinners-react";
 
 function NowPlaying() {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   async function getnowPlayingMovies() {
     const resp = await movies.getMoviesByName(
       "now_playing?language=en-US&page=1"
     );
     setNowPlayingMovies(resp.results);
+    setLoader(false);
   }
 
   useEffect(() => {
     getnowPlayingMovies();
   }, []);
+  if (loader) {
+    return (
+      <div className="loader">
+        <SpinnerCircular
+          size={100}
+          thickness={100}
+          speed={100}
+          color="#000"
+          secondaryColor="rgba(0, 0, 0, 0.3)"
+        />
+      </div>
+    );
+  }
   return (
     <div className="moviesContainer">
       <h2>Now Playing Movies</h2>

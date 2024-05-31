@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
-import movies from "../../repository/movies";
+import tvShow from "../../repository/tvShow";
 import "./default.css";
-
 import filterChevron from "../../img/moviesFilter.svg";
 import { convertDate } from "../../repository/dataConvert";
 import { SpinnerCircular } from "spinners-react";
 
-function Upcoming() {
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
+function TopRatedTv() {
+  const [popularMovies, setPopularMovies] = useState([]);
   const [loader, setLoader] = useState(true);
-
-  async function getupcomingMovies() {
-    const resp = await movies.getMoviesByName("upcoming?language=en-US&page=1");
-    setUpcomingMovies(resp.results);
+  async function getPopularTvMovies() {
+    const resp = await tvShow.getMoviesByName(
+      "top_rated?language=en-US&page=1"
+    );
+    setPopularMovies(resp.results);
     setLoader(false);
   }
 
   useEffect(() => {
-    getupcomingMovies();
+    getPopularTvMovies();
   }, []);
+
   if (loader) {
     return (
       <div className="loader">
@@ -34,7 +35,7 @@ function Upcoming() {
   }
   return (
     <div className="moviesContainer">
-      <h2>Upcoming Movies</h2>
+      <h2>Top Rated</h2>
       <div className="moviesWrapper">
         <div className="moviesFilter">
           <div className="sort">
@@ -48,7 +49,7 @@ function Upcoming() {
           <button className="filterSearch">Search</button>
         </div>
         <div className="moviesCards">
-          {upcomingMovies?.map((item, index) => {
+          {popularMovies?.map((item, index) => {
             return (
               <div key={index} className="card">
                 <span className="material-symbols-outlined moreIcon">
@@ -77,4 +78,4 @@ function Upcoming() {
   );
 }
 
-export default Upcoming;
+export default TopRatedTv;

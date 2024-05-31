@@ -20,12 +20,14 @@ body {
 .navbar-wrapper-menu {
   display: flex;
   gap: 14px;
+  cursor: pointer;
+
   color: white;
 }
 
 .navbar-wrapper-menu-item {
   padding: 8px;
-  position: relative; /* Needed to position the dropdown */
+  position: relative;
 }
 
 .navbar-wrapper-menu-item:nth-child(1) {
@@ -36,6 +38,7 @@ body {
   display: flex;
   align-items: center;
   gap: 30px;
+  cursor: pointer;
   color: white;
 }
 
@@ -59,15 +62,15 @@ body {
   color: black;
   z-index: 5;
   display: none;
-  padding: 20px 30px;
+  padding: 10px 30px;
   border-radius: 8px;
   position: absolute;
-  left: 0; /* Adjust as needed */
-  top: 100%; /* Position it below the menu item */
+  left: 0;
+  top: 100%;
 }
-.moviesToggle li{
-    padding: 5px;
-    width: 100px;
+.moviesToggle li {
+  padding: 3px 5px;
+  width: 120px;
 }
 
 .navbar-wrapper-menu-item:hover .moviesToggle {

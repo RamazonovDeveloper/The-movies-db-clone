@@ -9,6 +9,13 @@ function Navbar() {
     { text: "Upcoming", path: "/movies/upcoming" },
     { text: "Top Rated", path: "/movies/top_rated" },
   ];
+  const tvShowToggleData = [
+    { text: "Popular", path: "/tv" },
+    { text: "Airing today", path: "/tv/airing-today" },
+    { text: "On TV", path: "/tv/on-the-air" },
+    { text: "Top Rated", path: "/tv/top-rated" },
+  ];
+  const peopleToggleData = [{ text: "Popular people", path: "/person" }];
 
   const navbarMenuData = [
     {
@@ -22,7 +29,7 @@ function Navbar() {
     },
     { text: "Movies", path: "/movies" },
     { text: "TV Shows", path: "/tv" },
-    { text: "People", path: "/people" },
+    { text: "People", path: "/person" },
     { text: "More", path: "/more" },
   ];
 
@@ -43,6 +50,32 @@ function Navbar() {
                   <div className="moviesToggle">
                     <ul>
                       {moviesToggleData.map((item, index) => (
+                        <li key={index}>
+                          <Link to={item.path} className="">
+                            {item.text}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {nav_menu.text === "TV Shows" && (
+                  <div className="moviesToggle">
+                    <ul>
+                      {tvShowToggleData.map((item, index) => (
+                        <li key={index}>
+                          <Link to={item.path} className="">
+                            {item.text}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {nav_menu.text === "People" && (
+                  <div className="moviesToggle">
+                    <ul>
+                      {peopleToggleData.map((item, index) => (
                         <li key={index}>
                           <Link to={item.path} className="">
                             {item.text}
