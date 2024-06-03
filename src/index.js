@@ -13,6 +13,7 @@ import TV from "./pages/Tv/Tv";
 import AiringTodayTv from "./pages/Tv/AiringTodayTv";
 import OnTV from "./pages/Tv/OnTV";
 import TopRatedTv from "./pages/Tv/TopRatedTv";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,8 +30,8 @@ root.render(
         <Route path="/tv/airing-today" element={<AiringTodayTv />} />
         <Route path="/tv/on-the-air" element={<OnTV />} />
         <Route path="/tv/top-rated" element={<TopRatedTv />} />
-
         <Route path="/person" element={<Person />} />
+        <Route path="/search" element={<SearchPage />} />
       </Route>
     </Routes>
   </BrowserRouter>

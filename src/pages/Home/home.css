@@ -88,8 +88,14 @@
 .homeCardWrapper {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 .homeCardWrapper::-webkit-scrollbar {
   width: 10px;
+}
+
+
+.homeCardWrapper .card{
+  min-width: 150px;
+  
 }

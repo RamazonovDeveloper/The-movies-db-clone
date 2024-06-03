@@ -1,20 +1,31 @@
-import React from "react";
-import "./home.css";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Oscar from "../../img/homeOscars.svg";
 import ToggleButton from "../../repository/btn/toggleBtn";
-import { useState, useEffect } from "react";
 import homeTrending from "../../repository/homeTrending";
+import "./home.css";
 
 function Home() {
   const [trendData, setTrendData] = useState([]);
+  const [bgImg, setBgImg] = useState(null);
+
+  const searchRef = useRef()
+  const router = useNavigate()
+
   async function getPopularMovies() {
     const resp = await homeTrending.getMoviesByName("movie/day?language=en-US");
     setTrendData(resp.results);
+    setBgImg(resp.results[0].poster_path)
   }
 
   useEffect(() => {
     getPopularMovies();
   }, []);
+
+  const handleSearch = () => {
+    router(`/search?query=${searchRef?.current.value}`)
+  }
+
 
   return (
     <div>
@@ -30,8 +41,9 @@ function Home() {
               placeholder="Search for a movie, tv show, person......"
               name=""
               id=""
+              ref={searchRef}
             />
-            <button>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
         </div>
         <div className="oscars">
@@ -48,7 +60,11 @@ function Home() {
         <div className="homeCardWrapper">
           {trendData.map((item, index) => {
             return (
-              <div className="card" key={index}>
+              <div
+                className="card"
+                key={index}
+                onMouseEnter={() => setBgImg(item.poster_path)}
+              >
                 <img
                   src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`}
                   alt=""
@@ -66,6 +82,13 @@ function Home() {
             );
           })}
         </div>
+        {bgImg && (
+          <img
+            style={{ width: "200px", height: "200px" }}
+            src={`https://media.themoviedb.org/t/p/w440_and_h660_face/${bgImg}`}
+            alt=""
+          />
+        )}
       </div>
     </div>
   );
